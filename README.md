@@ -57,7 +57,35 @@ conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGene
 mv $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter.pl $CONDA_PREFIX/bin
 cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_PREFIX/panx_github/scripts/
 ```
+#### Overview of dependencies (installed in the environment):
+  * [PanX](https://github.com/neherlab/pan-genome-analysis/) 
+  * [DIAMOND](https://github.com/bbuchfink/diamond)
+  * [MCL](http://micans.org/mcl/)
+  * [mafft](http://mafft.cbrc.jp/alignment/software/)
+  * [fasttree](http://www.microbesonline.org/fasttree/)
+  * [raxml](https://github.com/stamatak/standard-RAxML)
+  * [treetime](http://github.com/neherlab/treetime)
 
+## How to run
+`PanGeneOmeter.pl --in_gbk list_of_gbk  --outDir  output_directory --threads 64 1>  /some/where/std.out 2>&1`
+
+To see all supported parameters run: ` PanGeneOmeter.pl -h `
+
+**When using the tool in published research, please cite:**
+-   Ashkenazy H and Weigel D, \"PanGene-O-Meter: Intra-Species Diversity Based on Gene-Content\",
+    [https://github.com/HaimAshk/PanGene-O-Meter](https://github.com/HaimAshk/PanGene-O-Meter) (2025)
+
+    **When using `--pangenome_alg PanX` (or for deafult run) please also cite:**
+    -   Ding W, Baumdicker F, Neher RA,
+        \"panX: pan-genome analysis and exploration\",
+        *Nucleic Acids Research*,**46(1):e5**
+        [doi: 10.1093/nar/gkx977](https://doi.org/10.1093/nar/gkx977).
+ 
+    **When using `--pangenome_alg DIAMONDClust` please also cite:**
+    -   Buchfink B, Ashkenazy H, Reuter K, Kennedy JA, Drost HG,
+        \"Sensitive clustering of protein sequences at tree-of-life scale using DIAMOND DeepClust\",
+        *bioRxiv* 2023.01.24.525373;
+        [doi: 10.1101/2023.01.24.525373](https://doi.org/10.1101/2023.01.24.525373) 
 
 Support
 =======
