@@ -72,18 +72,19 @@ cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_
 To see all supported parameters run: ` PanGeneOmeter.pl -h `
 
 **When using the tool in published research, please cite:**
--   Ashkenazy H and Weigel D, \"PanGene-O-Meter: Intra-Species Diversity Based on Gene-Content\",
+-   Ashkenazy H and Weigel D,<br>
+    \"PanGene-O-Meter: Intra-Species Diversity Based on Gene-Content\",<br>
     [https://github.com/HaimAshk/PanGene-O-Meter](https://github.com/HaimAshk/PanGene-O-Meter) (2025)
 
     **When using `--pangenome_alg PanX` (or for deafult run) please also cite:**
-    -   Ding W, Baumdicker F, Neher RA,
-        \"panX: pan-genome analysis and exploration\",
+    -   Ding W, Baumdicker F, Neher RA,<br>
+        \"panX: pan-genome analysis and exploration\",<br>
         *Nucleic Acids Research*,**46(1):e5**
         [doi: 10.1093/nar/gkx977](https://doi.org/10.1093/nar/gkx977).
  
     **When using `--pangenome_alg DIAMONDClust` please also cite:**
-    -   Buchfink B, Ashkenazy H, Reuter K, Kennedy JA, Drost HG,
-        \"Sensitive clustering of protein sequences at tree-of-life scale using DIAMOND DeepClust\",
+    -   Buchfink B, Ashkenazy H, Reuter K, Kennedy JA, Drost HG,<br>
+        \"Sensitive clustering of protein sequences at tree-of-life scale using DIAMOND DeepClust\",<br>
         *bioRxiv* 2023.01.24.525373;
         [doi: 10.1101/2023.01.24.525373](https://doi.org/10.1101/2023.01.24.525373) 
 
