@@ -21,9 +21,11 @@ PanGene-O-Meter is actively supported and developed software. Please use the [is
 1.	Orthology group assignment: Assign predicted genes to orthology groups (pangenes) to constructing a pan-genome (different methods can be used for this step).
 2.	Phyletic pattern representation: Represent each genome as a binary presence/absence (P/A) vector, where each element corresponds to a pangene and the value is either 1 (present) or 0 (absent).
 3.	Gene-content similarity (GCS) calculation: Calculate GCS based on Jaccard similarity (“GCSj”) between the P/A vectors of two bacterial genomes ($pS1$ and $pS2$):
-$$
-x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
-$$
+<div align="center">
+  ![Quadratic Formula](https://latex.codecogs.com/png.latex?x = \frac{-b \pm \sqrt{b^2-4ac}}{2a})
+</div>
+
+
 
 
 where M11 represents the total number of elements (orthology-groups) for which both pS1 and pS2 have a value of 1; M01 represents the total number of elements for which the value of pS1 is 0 and pS1 is 1; and M10 represents the total number of elements for which the value of pS1 is 1 and the value of pS2 is 0.
