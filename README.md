@@ -76,7 +76,7 @@ To see all supported parameters run: ` PanGeneOmeter.pl -h `
     \"PanGene-O-Meter: Intra-Species Diversity Based on Gene-Content\",<br>
     [https://github.com/HaimAshk/PanGene-O-Meter](https://github.com/HaimAshk/PanGene-O-Meter) (2025)
 
-    **When using `--pangenome_alg PanX` (or for deafult run) please also cite:**
+    **When using `--pangenome_alg PanX` (or for default run) please also cite:**
     -   Ding W, Baumdicker F, Neher RA,<br>
         \"panX: pan-genome analysis and exploration\",<br>
         *Nucleic Acids Research*,**46(1):e5**
