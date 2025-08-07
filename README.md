@@ -30,7 +30,12 @@ $$GCSo(pS1,pS2)=\frac{M11}{(min(M01+M11,M10+M11))}$$
 ## Quick start
 ### Installing
 0. If not already installed, install miniconda on your system
-1. Create a new environment for PanGeneOmeter
+```
+wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+bash Miniconda2-latest-Linux-x86_64.sh
+export PATH=~/miniconda2/bin:$PATH
+```
+2. Create a new environment for PanGeneOmeter
 ```
 conda create -n PanGeneOmeter python==2.7.*
 ```
