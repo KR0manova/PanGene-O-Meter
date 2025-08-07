@@ -67,7 +67,7 @@ cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_
   * [treetime](http://github.com/neherlab/treetime)
 
 ## How to run
-`PanGeneOmeter.pl --in_gbk list_of_gbk  --outDir  output_directory --threads 64 1>  /some/where/std.out 2>&1`
+`PanGeneOmeter.pl --in_gbk list_of_gbk  --outDir  output_directory --threads 64`
 
 To see all supported parameters run: ` PanGeneOmeter.pl -h `
 
