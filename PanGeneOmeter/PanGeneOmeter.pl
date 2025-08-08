@@ -138,7 +138,7 @@ my @gbk_suffix=(".gbk",".gbff","gb");
 
 my @all_output_files=(); # will be populated during the run
 
-make_path($out_dir_base) || die "Can't create the output directory '$out_dir_base' $!";
+if (! -d $out_dir_base) {make_path($out_dir_base) || die "Can't create the output directory '$out_dir_base' $!";}
 open (my $LOG,">",$log_file) || die "Can't open LOG file '$log_file' $!";
 print $LOG "============ PanGene-O-Meter ============\n";
 my $datestring = strftime "%a %b %e %H:%M:%S %Y", localtime;
