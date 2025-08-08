@@ -75,7 +75,15 @@ cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_
   * [treetime](http://github.com/neherlab/treetime)
 
 ## How to run
-`PanGeneOmeter.pl --in_gbk list_of_gbk  --outDir  output_directory --threads 64`
+PanGene-O-Meter requires a file containing a list of annotated genomes in [*GenBank Flat File*](https://www.ncbi.nlm.nih.gov/genbank/samplerecord/) format for analysis, 
+<br>specified with the `--in_gbk` argument, and an output directory, designated by the `--outDir` argument. 
+<br>`--threads ` sets the number of CPU cores \[default=1\].
+
+So for example:
+
+``PanGeneOmeter.pl --in_gbk list_of_gbk  --outDir  output_directory --threads 64``
+
+** Additional (optional) parameters:
 
 To see all supported parameters run: ` PanGeneOmeter.pl -h `
 
