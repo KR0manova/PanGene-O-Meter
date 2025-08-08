@@ -11,7 +11,7 @@ Bacterial genome evolution is shaped to a great extent by horizontal gene transf
   * [How to run](#how-to-run)
   * [Command line arguments](#command-line-arguments)
   * [Directory structure and analysis output](#directory-structure-and-analysis-output)
-  * 
+  * [Citing and Credit](#Citing-and-Credit)
 
 ## Pipeline overview
 1.	Orthology group assignment: Assign predicted genes to orthology groups (pangenes) to constructing a pan-genome (different methods can be used for this step).
