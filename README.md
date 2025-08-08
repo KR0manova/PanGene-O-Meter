@@ -62,7 +62,7 @@ cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_
 * If pip installation fails \[previous steps ends with error like: `CondaEnvException: Pip failed` or typing `pip` results in an error like: `ImportError: No module named pip._internal.cli.main`\]
   ```
   python2.7 -m ensurepip --default-pip
-  conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml  --prune
+  conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml --prune
   ```
   
 #### Overview of dependencies (installed in the environment):
