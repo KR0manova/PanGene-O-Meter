@@ -9,8 +9,9 @@ Bacterial genome evolution is shaped to a great extent by horizontal gene transf
   * [Pipeline overview](#pipeline-overview)
   * [Quick start](#quick-start)
   * [How to run](#how-to-run)
-  * [Directory structure and analysis output](#directory-structure-and-analysis-output)
   * [Command line arguments](#command-line-arguments)
+  * [Directory structure and analysis output](#directory-structure-and-analysis-output)
+  * 
 
 ## Pipeline overview
 1.	Orthology group assignment: Assign predicted genes to orthology groups (pangenes) to constructing a pan-genome (different methods can be used for this step).
@@ -53,13 +54,15 @@ conda activate /some/where/PanGeneOmeter
 ```
 git clone https://github.com/HaimAshk/PanGene-O-Meter.git $CONDA_PREFIX/PanGeneOmeter_github
 git clone https://github.com/neherlab/pan-genome-analysis.git $CONDA_PREFIX/panx_github
-conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml  --prune 
+conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml --prune 
 mv $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter.pl $CONDA_PREFIX/bin
 cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_PREFIX/panx_github/scripts/
 ```
 
 ### Installation troubleshooting
 * If pip installation fails \[previous steps ends with error like: `CondaEnvException: Pip failed` or typing `pip` results in an error like: `ImportError: No module named pip._internal.cli.main`\]
+
+
   ```
   python2.7 -m ensurepip --default-pip
   conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml --prune
@@ -79,14 +82,34 @@ PanGene-O-Meter requires a file containing a list of annotated genomes in [*GenB
 <br>specified with the `--in_gbk` argument, and an output directory, designated by the `--outDir` argument. 
 <br>`--threads ` sets the number of CPU cores \[default=1\].
 
-So for example:
+**So for example:**
 
 ``PanGeneOmeter.pl --in_gbk list_of_gbk  --outDir  output_directory --threads 64``
 
-** Additional (optional) parameters:
+* To see all supported parameters run: ` PanGeneOmeter.pl -h `
 
-To see all supported parameters run: ` PanGeneOmeter.pl -h `
+## Command line arguments
+### Mandatory parameters:
+* `--in_gbk_list_file <File>`: Specify the path to the file containing a list of genomes to be analyzed, each in [*GenBank Flat File*](https://www.ncbi.nlm.nih.gov/genbank/samplerecord/) format.
+* `--outDir <Directory>`: Provide the full path to the directory where output files will be saved.
+### Additional (optional) parameters:
+#### General Parameters:
+* `--prefix_name <Prefix>`: Specify a prefix to be added to the names of the output files. Default is an empty string (""), meaning no prefix will be used.
+* `--metadata_file <File>`: Provide the path to a tab-delimited file containing metadata and descriptions for the genomes being analyzed. Default is an empty string (""). If not provided, metadata will be automatically extracted from the GenBank file.
+* `--threads <Number>`: Set the number of threads to use for parallel processing. The default is `1`, meaning the program will use a single thread.
+* `--help`: Display help information and exit the program.
 
+#### PanGenome Construction Parameters:
+* `--pangenome_alg <Algorithm>`: Choose the algorithm for PanGenome construction. Options are `PanX` or `DIAMONDClust`. The default option is `PanX`.
+* `--diamond_pid <Percentage>:` Set the percentage identity for clustering sequences when using `DIAMONDClust`. The default is `80`.
+* `--diamond_cover <Coverage Cutoff>`: Define the mutual coverage cutoff for use in `DIAMONDClust`. The default value is `70`.
+* `--reuse_PanGenome`: If this option is specified, the PanGenome construction step will be skipped, and existing files from previous runs in the output directory will be reused. By default, the program will override and execute all steps anew.
+
+#### *GeneContRep* Clustering Parameters:
+* `--GCS_method <Method>`: Select the gene-content similarity metric to be used in the *GeneContRep* step. Options are `GCSj` or `GCSJo`, with the default being `GCSj`.
+* `--CGS_clustering_cutoff <Cutoff>`: Set the cutoff value for gene-content similarity clustering during the *GeneContRep* step. The value should be between `0` and `1`, with the default being `0.9`.
+
+## Citing and Credit
 **When using the tool in published research, please cite:**
 -   Ashkenazy H and Weigel D,<br>
     \"PanGene-O-Meter: Intra-Species Diversity Based on Gene-Content\",<br>
