@@ -11,8 +11,8 @@ use FindBin qw($Bin);
 use Archive::Tar;
 use Cwd;
 use POSIX qw(strftime);
-use IO::Zlib;
-use IO::Compress::Gzip qw(gzip $GzipError);
+# use IO::Zlib;
+# use IO::Compress::Gzip qw(gzip $GzipError);
 
 my $PANX_PATH=$ENV{CONDA_PREFIX}."/panx_github/panX.py";
 
@@ -1693,32 +1693,32 @@ sub by_total_genome_length_fasta_rev
 }
 
 # ToDo: cleanup --> get_total_genome_length_fasta is no longer used in PanGenOmeter
-sub get_total_genome_length_fasta 
-{
-	my $fasta_file=shift;
-	my $IN;
-    if ($fasta_file =~ /.gz$/) 
-	{
-        $IN = new IO::Zlib;
-        $IN->open($fasta_file, "rb") or exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open IN '$fasta_file' $!\n");     
-        # open(IN, "gunzip -c $fasta_file |") || exit_on_error ("[ERROR] get_total_genome_length_fasta: Can’t open pipe to $fasta_file");
-	}
-	else {
-		open($IN, $fasta_file) or  exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open '$fasta_file': $!\n");
-	}
-	
-	my $length=0;
-	while (my $line=<IN>)
-	{
-		if ($line!~/^>/)
-		{
-			chomp $line;
-			$length=$length+length($line);
-		}
-	}
-	close (IN);
-	return $length;
-}
+# sub get_total_genome_length_fasta 
+# {
+#	my $fasta_file=shift;
+#	my $IN;
+#    if ($fasta_file =~ /.gz$/) 
+#	{
+#        $IN = new IO::Zlib;
+#        $IN->open($fasta_file, "rb") or exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open IN '$fasta_file' $!\n");     
+#        # open(IN, "gunzip -c $fasta_file |") || exit_on_error ("[ERROR] get_total_genome_length_fasta: Can’t open pipe to $fasta_file");
+#	}
+#	else {
+#		open($IN, $fasta_file) or  exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open '$fasta_file': $!\n");
+#	}
+#	
+#	my $length=0;
+#	while (my $line=<IN>)
+#	{
+#		if ($line!~/^>/)
+#		{
+#			chomp $line;
+#			$length=$length+length($line);
+#		}
+#	}
+#	close (IN);
+#	return $length;
+# }
 
 #     OLDER implenetion, does not support filtered positions     #
 # sub calc_Jaccard_similarity_of_asymmetric_binary_attributes
