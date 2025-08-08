@@ -159,12 +159,12 @@ my %genomes_length=();
 
 my $Out_PhyleticPattern_prefix="";
 if ($PanGenomeAlg eq "PANX") {
-    if (defined $Prefix_Name and $Prefix_Name ne "") {$Out_PhyleticPattern_prefix=$out_dir_base.$Prefix_Name.".".$PanGenomeAlg_for_file_names.".PhylleticPattern";} 
-    else {$Out_PhyleticPattern_prefix=$out_dir_base.$PanGenomeAlg_for_file_names.".PhylleticPattern";}
+    if (defined $Prefix_Name and $Prefix_Name ne "") {$Out_PhyleticPattern_prefix=$out_dir_base.$Prefix_Name.".".$PanGenomeAlg_for_file_names.".PhyleticPattern";} 
+    else {$Out_PhyleticPattern_prefix=$out_dir_base.$PanGenomeAlg_for_file_names.".PhyleticPattern";}
 }
 elsif ($PanGenomeAlg eq "DIAMONDCLUST") {
-    if (defined $Prefix_Name and $Prefix_Name ne "") {$Out_PhyleticPattern_prefix=$out_dir_base.$Prefix_Name.".".$PanGenomeAlg_for_file_names.".mutual_cover_".$diamnod_cover.".id_".$diamond_pid.".PhylleticPattern";} 
-    else {$Out_PhyleticPattern_prefix=$out_dir_base.$PanGenomeAlg_for_file_names.".mutual_cover_".$diamnod_cover.".id_".$diamond_pid.".PhylleticPattern";}
+    if (defined $Prefix_Name and $Prefix_Name ne "") {$Out_PhyleticPattern_prefix=$out_dir_base.$Prefix_Name.".".$PanGenomeAlg_for_file_names.".mutual_cover_".$diamnod_cover.".id_".$diamond_pid.".PhyleticPattern";} 
+    else {$Out_PhyleticPattern_prefix=$out_dir_base.$PanGenomeAlg_for_file_names.".mutual_cover_".$diamnod_cover.".id_".$diamond_pid.".PhyleticPattern";}
 }
 
 my $Out_all_vs_all_J_overlap_distance_file="";
@@ -389,9 +389,9 @@ my $distance_all_pairs_file="NA";     # if exists will be used later
 foreach my $file (@all_output_files) {
     if ($file=~/.fas$/) {
         update_tax_name($file,\%GenomesNames_New2Old);
-    } elsif ($file=~/PhylleticPattern.01.csv$/) {
+    } elsif ($file=~/PhyleticPattern.01.csv$/) {
         update_tax_name($file,\%GenomesNames_New2Old,[(0)],",","T");
-    } elsif ($file=~/.PhylleticPattern.csv$/) {
+    } elsif ($file=~/.PhyleticPattern.csv$/) {
         update_tax_name($file,\%GenomesNames_New2Old,[(0)],",","T");
     } elsif ($file=~/distance.all_pairs.csv$/) {
         update_tax_name($file,\%GenomesNames_New2Old,[(0,1,9)],",","T");
@@ -420,6 +420,7 @@ else {
 my ($clusters_annotation_with_metadata_file)=fileparse($clusters_annotation_file,".txt");
 $clusters_annotation_with_metadata_file=$out_dir_base.$clusters_annotation_with_metadata_file.".and_metadata.txt";
 merge_files($clusters_annotation_file,$out_metadata_file,1,1,$clusters_annotation_with_metadata_file,"\t","\t","\t","YES");
+push (@all_output_files,$clusters_annotation_with_metadata_file);
 
 # merge metadata with the all_vs_pairs
 if ($distance_all_pairs_file ne "NA")
@@ -429,6 +430,7 @@ if ($distance_all_pairs_file ne "NA")
     merge_files($distance_all_pairs_file,$out_metadata_file,1,1,$dinstance_all_pairs_file_with_metadata.".tmp",",",",","\t","YES","","S1");
     merge_files($dinstance_all_pairs_file_with_metadata.".tmp",$out_metadata_file,2,1,$dinstance_all_pairs_file_with_metadata,",",",","\t","YES","","S2");
     unlink ($dinstance_all_pairs_file_with_metadata.".tmp");
+    push (@all_output_files,$dinstance_all_pairs_file_with_metadata);
 }
 
 # Run finished update about all files created
@@ -436,15 +438,16 @@ $datestring = strftime "%a %b %e %H:%M:%S %Y", localtime;
 print "$datestring [FINISHED] PanGene-O-Meter run has finished succesfully. The following outputs were created:\n";
 print $LOG "$datestring [FINISHED] PanGene-O-Meter run has finished succesfully. The following outputs were created:\n";
 
-my @Phyletic_pattern_files=grep (/PhylleticPattern/,@all_output_files);
-print "== Phylletic Patterns\n";
-print $LOG "== Phylletic Patterns\n";
+my @Phyletic_pattern_files=grep (/PhyleticPattern/,@all_output_files);
+print "== Phyletic Patterns\n";
+print $LOG "== Phyletic Patterns\n";
 foreach my $file (@Phyletic_pattern_files) {
     print "- $file\n";
     print $LOG "- $file\n";
 }
 
 my @Pairwise_files=grep (/all_pairs/,@all_output_files);
+@Pairwise_files=grep(!/_distance.all_pairs.csv/,@Pairwise_files);
 print "== Pairwise distances\n";
 print $LOG "== Pairwise distances\n";
 foreach my $file (@Pairwise_files) {
@@ -453,6 +456,7 @@ foreach my $file (@Pairwise_files) {
 }
 
 my @Clustering_files=sort(grep (/(representative)|(clstr)|(clusters)/,@all_output_files));
+@Clustering_files=grep (!/(names_and)|(clusters_annotation\.txt)/,@Clustering_files);
 print "== Clusters\n";
 print $LOG "== Clusters\n";
 foreach my $file (@Clustering_files) {
@@ -1693,31 +1697,31 @@ sub by_total_genome_length_fasta_rev
 }
 
 # ToDo: cleanup --> get_total_genome_length_fasta is no longer used in PanGenOmeter
-# sub get_total_genome_length_fasta 
-# {
-#	my $fasta_file=shift;
-#	my $IN;
-#    if ($fasta_file =~ /.gz$/) 
-#	{
-#        $IN = new IO::Zlib;
-#        $IN->open($fasta_file, "rb") or exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open IN '$fasta_file' $!\n");     
-#        # open(IN, "gunzip -c $fasta_file |") || exit_on_error ("[ERROR] get_total_genome_length_fasta: Can’t open pipe to $fasta_file");
-#	}
-#	else {
-#		open($IN, $fasta_file) or  exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open '$fasta_file': $!\n");
-#	}
-#	
-#	my $length=0;
-#	while (my $line=<IN>)
-#	{
-#		if ($line!~/^>/)
-#		{
-#			chomp $line;
-#			$length=$length+length($line);
-#		}
-#	}
-#	close (IN);
-#	return $length;
+#  sub get_total_genome_length_fasta 
+#  {
+# 	my $fasta_file=shift;
+# 	my $IN;
+#     if ($fasta_file =~ /.gz$/) 
+# 	{
+#         $IN = new IO::Zlib;
+#         $IN->open($fasta_file, "rb") or exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open IN '$fasta_file' $!\n");     
+#         # open(IN, "gunzip -c $fasta_file |") || exit_on_error ("[ERROR] get_total_genome_length_fasta: Can’t open pipe to $fasta_file");
+# 	}
+# 	else {
+# 		open($IN, $fasta_file) or  exit_on_error ("[ERROR] get_total_genome_length_fasta: can't open '$fasta_file': $!\n");
+# 	}
+	
+# 	my $length=0;
+# 	while (my $line=<IN>)
+# 	{
+# 		if ($line!~/^>/)
+# 		{
+# 			chomp $line;
+# 			$length=$length+length($line);
+# 		}
+# 	}
+# 	close (IN);
+# 	return $length;
 # }
 
 #     OLDER implenetion, does not support filtered positions     #
