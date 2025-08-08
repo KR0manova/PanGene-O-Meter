@@ -10,7 +10,7 @@ Bacterial genome evolution is shaped to a great extent by horizontal gene transf
   * [Quick start](#quick-start)
   * [How to run](#how-to-run)
   * [Command line arguments](#command-line-arguments)
-  * [Directory structure and analysis output](#directory-structure-and-analysis-output)
+  * [Directory structure and analysis output](#output-files)
   * [Citing and Credit](#Citing-and-Credit)
 
 ## Pipeline overview
@@ -125,7 +125,24 @@ PanGene-O-Meter requires a file containing a list of annotated genomes in [*GenB
     -   Buchfink B, Ashkenazy H, Reuter K, Kennedy JA, Drost HG,<br>
         \"Sensitive clustering of protein sequences at tree-of-life scale using DIAMOND DeepClust\",<br>
         *bioRxiv* 2023.01.24.525373;
-        [doi: 10.1101/2023.01.24.525373](https://doi.org/10.1101/2023.01.24.525373) 
+        [doi: 10.1101/2023.01.24.525373](https://doi.org/10.1101/2023.01.24.525373)
+
+## Output files
+#### Phyletic Patterns
+* **.PhyleticPattern.fas**: A FASTA format file representing the Phyletic pattern. Each site (or position in sequence) corresponds to an orthology group, as specified in `PhyleticPattern.clusters_names_and_pos.txt`.
+* **.PhyleticPattern.clusters_names_and_pos.txt**: Contains the names and positions of orthology groups as detailed in the FASTA Phyletic Pattern files.
+* **.PhyleticPattern.01.csv**: Presents the Phyletic pattern as a CSV matrix, indicating the presence (1) or absence (0) of orthology groups across genomes.
+* **.PhyleticPattern.csv**: Displays the Phyletic pattern as a CSV table, where multi-copy orthology groups are represented by the number of copies observed in each genome.
+* **.PhyleticPattern.clusters_names_and_NumOfSpecies.txt**: Lists orthology groups alongside the number of genomes in which each group is found, and the average number of copies per genome. This file provides insights into the distribution and conservation of gene clusters.
+#### Pairwise Distances
+* **.distance.all_pairs.and_metadata.csv**: This CSV file includes pairwise distance measurements for all genome pairs, calculated using the gene-content similarity metrics `GCSj` and `GCSo`. Additionally, it incorporates metadata for each genome pair, offering quantitative insights into the gene-content similarity along with contextual information for each pair of genomes.
+#### Clusters
+* **.clstr.txt**: Describes cluster assignments based on a specified similarity cutoff. Each cluster comprises genomes grouped according to the gene-content similarity metric, sharing similarity above the selected cutoff in relation to the cluster representative.
+* **.clusters_annotation_and_metadata.txt**: Provides details on the cluster membership of each genome, including associated metadata to present additional contextual information regarding each genome's biological and ecological characteristics.
+* **.representative_PhP.csv**: Contains phyletic pattern data formatted as a CSV matrix for the representative genomes selected for each cluster. This file provides insights into orthology group presence or absence across cluster representatives.
+* **.representative_PhP.fas**: Provides phyletic pattern data in FASTA format for the representative genomes selected for each cluster. Each position in the FASTA sequence corresponds to an orthology group, with detailed information available in the PhylleticPattern.clusters_names_and_pos.txt file.
+* **.clusters_sum.txt**: Indicates the representative sequence ID for each cluster, along with the number of genome members in each cluster and their respective genome IDs. This file provides a concise overview of the composition of each cluster.
+
 
 Support
 =======
