@@ -47,7 +47,7 @@ conda create -p /some/where/PanGeneOmeter python==2.7.*
 ```
 conda activate PanGeneOmeter
 ## OR ##
-conda activate -p /some/where/PanGeneOmeter
+conda activate /some/where/PanGeneOmeter
 ```
 3. Downlaod and install PanGeneOmeter and dependencies
 ```
@@ -59,10 +59,10 @@ cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_
 ```
 
 ### Installation troubleshooting
-* If pip installation fails \[`pip` results in an error like: `ImportError: No module named pip._internal.cli.main`\]
+* If pip installation fails \[previous steps ends with error like: `CondaEnvException: Pip failed` or typing `pip` results in an error like: `ImportError: No module named pip._internal.cli.main`\]
   ```
   python2.7 -m ensurepip --default-pip
-  conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml  --prune
+  conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml --prune
   ```
   
 #### Overview of dependencies (installed in the environment):
