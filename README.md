@@ -57,6 +57,14 @@ conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGene
 mv $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter.pl $CONDA_PREFIX/bin
 cp $CONDA_PREFIX/PanGeneOmeter_github/PanX_Patch/sf_extract_sequences.py $CONDA_PREFIX/panx_github/scripts/
 ```
+
+### Installation troubleshooting
+* If pip installation fails \[`pip` results in an error like: `ImportError: No module named pip._internal.cli.main`\]
+  ```
+  python2.7 -m ensurepip --default-pip
+  conda env update --file $CONDA_PREFIX/PanGeneOmeter_github/PanGeneOmeter/PanGeneOmeter-environment.yml  --prune
+  ```
+  
 #### Overview of dependencies (installed in the environment):
   * [PanX](https://github.com/neherlab/pan-genome-analysis/) 
   * [DIAMOND](https://github.com/bbuchfink/diamond)
