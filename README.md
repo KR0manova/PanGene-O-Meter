@@ -50,7 +50,7 @@ conda activate PanGeneOmeter
 ## OR ##
 conda activate /some/where/PanGeneOmeter
 ```
-3. Downlaod and install PanGeneOmeter and dependencies
+3. Download and install PanGeneOmeter and dependencies
 ```
 git clone https://github.com/HaimAshk/PanGene-O-Meter.git $CONDA_PREFIX/PanGeneOmeter_github
 git clone https://github.com/neherlab/pan-genome-analysis.git $CONDA_PREFIX/panx_github
